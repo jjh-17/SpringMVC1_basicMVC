@@ -90,7 +90,21 @@ public class RequestParamController {
     @ResponseBody
     @RequestMapping("/model-attribute-v1")
     public String modelAttributeV1(@ModelAttribute HelloData helloData) {
-        log.info("helloData={}", helloData);
+        log.info("model-attribute-v1 helloData={}", helloData);
+        return "ok";
+    }
+
+    /*
+    @ModelAttribute 생략 가능
+
+    @ModelAttribute, @RequestParam 모두 생략 시, 다음 규칙을 적용
+    1. 단순 타입(String, int, Integer, ...) ==> @RequestParam
+    2. argument resolver 타입 외 나머지 ==> @ModelAttribute
+    */
+    @ResponseBody
+    @RequestMapping("/model-attribute-v2")
+    public String modelAttributeV2(HelloData helloData) {
+        log.info("model-attribute-v2 helloData={}", helloData);
         return "ok";
     }
 
